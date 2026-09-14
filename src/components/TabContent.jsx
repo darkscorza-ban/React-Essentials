@@ -1,0 +1,14 @@
+function TabContent({ item }) {
+  const { title, description, code } = item;
+  return (
+    <div id="tab-content">
+      <h3>{title}</h3>
+      <p>{description}</p>
+      <pre>
+        <code>{code}</code>
+      </pre>
+    </div>
+  );
+}
+
+export default TabContent;
