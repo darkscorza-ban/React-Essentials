@@ -2,8 +2,9 @@ import { useState } from "react";
 import { EXAMPLES } from "../data";
 import Button from "./Button";
 import TabContent from "./TabContent";
+import Section from "./Section";
 function TabButtons() {
-  const [activeTab, setActiveTab] = useState("components");
+  const [activeTab, setActiveTab] = useState("");
   const examplesTitle = Object.keys(EXAMPLES);
 
   const activeItem = EXAMPLES[activeTab];
@@ -11,20 +12,23 @@ function TabButtons() {
     setActiveTab(item);
   }
   return (
-    <div id="examples">
-      <h2>Examples</h2>
+    <Section id="examples" title="Examples">
       <menu>
         {examplesTitle.map((item, i) => (
           <Button
             item={item}
             key={i}
             onClick={() => handleClick(item)}
-            title={activeItem.title}
+            title={activeItem?.title}
           />
         ))}
       </menu>
-      <TabContent item={activeItem} />
-    </div>
+      {activeTab ? (
+        <TabContent item={activeItem} />
+      ) : (
+        <h2>Please Select a Topic.</h2>
+      )}
+    </Section>
   );
 }
 
